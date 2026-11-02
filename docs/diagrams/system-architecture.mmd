@@ -1,0 +1,16 @@
+flowchart TD
+    U[User] --> UI[React UI: App.tsx]
+    UI --> CP[ControlPanel]
+    UI --> AC[AsciiCanvas]
+    AC --> MD[Browser MediaDevices API]
+    MD --> CAM[Camera stream]
+    CAM --> VC[Hidden canvas and pixel sampling]
+    VC --> SM[Temporal smoothing and brightness mapping]
+    SM --> ASCII[Visible ASCII canvas]
+    ASCII --> EXP[PNG screenshot export]
+    ASCII --> CAP[Capture for AI analysis]
+    CAP --> GS[geminiService.ts]
+    GS --> GEM[Google Gemini API]
+    GEM --> GS
+    GS --> MOD[AnalysisModal]
+    UI --> SFX[Web Audio sound effects]
