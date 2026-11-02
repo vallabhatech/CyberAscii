@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor User
+    participant UI as React App
+    participant Camera as Browser Camera
+    participant Canvas as ASCII Canvas
+    participant Service as Gemini Service
+    participant Gemini as Google Gemini API
+    User->>UI: Open application
+    UI->>Camera: Request camera permission
+    Camera-->>Canvas: Video stream if permitted
+    loop Animation frames
+        Canvas->>Canvas: Draw mirrored frame
+        Canvas->>Canvas: Smooth pixels and map brightness
+        Canvas-->>User: Render ASCII view
+    end
+    User->>Canvas: Click Scan and Analyze
+    Canvas->>Canvas: Export visible canvas as PNG
+    Canvas->>UI: onCapture(imageData)
+    UI->>Service: analyzeImage(imageData)
+    Service->>Gemini: Send image and JSON schema
+    Gemini-->>Service: JSON text
+    Service-->>UI: description, threatLevel, tags
+    UI-->>User: Display analysis modal
