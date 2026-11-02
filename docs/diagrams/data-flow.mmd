@@ -1,0 +1,12 @@
+flowchart LR
+    Camera[Camera frames] --> Hidden[Hidden processing canvas]
+    Hidden --> Pixels[RGBA pixel data]
+    Pixels --> Smooth[Previous-frame smoothing]
+    Smooth --> Brightness[Brightness, contrast, gain]
+    Brightness --> Mapping[Density map lookup]
+    Mapping --> Visible[Visible ASCII canvas]
+    Visible --> Download[PNG download]
+    Visible --> ImageData[PNG data URL on analysis]
+    ImageData --> Gemini[Google Gemini service]
+    Gemini --> Result[JSON description, threatLevel, tags]
+    Result --> Modal[Analysis modal]
